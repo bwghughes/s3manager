@@ -5,7 +5,7 @@ from s3manager import get_iam_connection, add_user_to_group, USER_GROUP,\
                       create_user
 from boto.exception import BotoServerError
 
-class TestS3Manager(unittest.TestCase):
+class UnitTestS3Manager(unittest.TestCase):
 
     def setUp(self):
         pass
@@ -55,6 +55,15 @@ class TestS3Manager(unittest.TestCase):
         username, access_key, access_secret = create_user(iam_connection=mock_iam,
                                                           username=mock_username)
         self.assertRaises(BotoServerError)
+
+
+class FunctionalTestS3Manager(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_get_iam_connection(self):
+        conn = get_iam_connection()
+        assert conn
 
 
 if __name__ == '__main__':

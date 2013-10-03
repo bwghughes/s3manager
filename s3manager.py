@@ -33,7 +33,7 @@ def add_user_to_group(iam_connection=None, username=None):
 def create_user(iam_connection=None, username=None):
     try:
         response = iam_connection.create_user(username)
-        response = iam_connection.create_access_key(username)
+        response = iam_connection.  (username)
         access_key, secret_key = response.access_key.get('access_key_id'),\
                                  response.access_key.get('secret_access_key')
         return username, access_key, secret_key

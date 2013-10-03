@@ -13,6 +13,7 @@ lib
 man
 var
 sdist
+htmlcov
 develop-eggs
 .installed.cfg
 cover
