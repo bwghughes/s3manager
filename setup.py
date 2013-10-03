@@ -26,6 +26,10 @@ setup(
         'boto',
         'wsgiref'
     ],
+    entry_points={
+        'console_scripts':
+            ['s3manager=s3manager:main']
+    },
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',

@@ -1,5 +1,6 @@
 import os
 import logging
+import argparse
 
 import boto
 from boto.exception import BotoServerError
@@ -19,7 +20,7 @@ def get_iam_connection():
         log.fatal("Failed to connect to IAM service.")
 
 
-def create_bucket(iam_connection=None):
+def create_bucket(iam_connection=None, username=None):
     pass
 
 
@@ -33,9 +34,17 @@ def add_user_to_group(iam_connection=None, username=None):
 def create_user(iam_connection=None, username=None):
     try:
         response = iam_connection.create_user(username)
-        response = iam_connection.  (username)
+        response = iam_connection.create_access_key(username)
         access_key, secret_key = response.access_key.get('access_key_id'),\
                                  response.access_key.get('secret_access_key')
         return username, access_key, secret_key
     except BotoServerError:
         log.fatal("Failed to create user.")
+
+def main():
+    parser = argparse.ArgumentParser(description='IFA Secure Command Line Application')
+    parser.add_argument('--init', action="store_true", dest="init", default=False)
+    parser.add_argument('--name', action="store", dest="name")
+    parser.add_argument('--email', action="store", dest="email")
+    parser.add_argument('--password', action="store", dest="password")
+    options = parser.parse_args()

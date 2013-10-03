@@ -71,4 +71,5 @@ if __name__ == '__main__':
     import sys
     loader = unittest.TestLoader()
     suite = loader.discover(os.curdir)
+    print suite._tests
     unittest.TextTestRunner(sys.stdout, verbosity=1).run(suite)
