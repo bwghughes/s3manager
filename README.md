@@ -17,7 +17,7 @@ import uuid
 from s3_manager import create_user_and_bucket
 
 def main():
-    user_name = uuid.uuid4()
+    user_name = "someuserdudeguychap@flipper.com"
     aws_access_id, aws_access_secret = create_user_and_bucket(user_name)
 
 if __name__ == '__main__':

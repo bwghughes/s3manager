@@ -1,3 +1,4 @@
+import uuid
 import unittest
 from mock import patch, Mock
 from nose.plugins.attrib import attr
@@ -61,13 +62,26 @@ class UnitTestS3Manager(unittest.TestCase):
 @attr('integration')
 class FunctionalTestS3Manager(unittest.TestCase):
     def setUp(self):
-        pass
+        self.conn = get_iam_connection()
+        self.username = 'test-username-{}'.format(uuid.uuid4())
 
     def test_get_iam_connection(self):
-        conn = get_iam_connection()
-        groups = conn.get_all_groups()
-        #assert
+        groups = self.conn.get_all_groups()
+        assert groups
 
+    def test_create_user(self):
+        username, access_key, access_secret = \
+                    create_user(iam_connection=self.conn, username=self.username)
+        self.access_key, self.access_secret = access_key, access_secret
+        assert access_key
+        assert access_secret
+        self.conn.remove_user_from_group(USER_GROUP, self.username)
+        self.conn.delete_access_key(access_key, self.username)
+        self.conn.delete_user(self.username)
+
+
+    def tearDown(self):
+        self.conn = None
 
 
 if __name__ == '__main__':
