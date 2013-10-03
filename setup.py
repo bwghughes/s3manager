@@ -10,15 +10,15 @@ from setuptools import setup
 
 
 setup(
-    name='S3UserManager',
+    name='S3Manager',
     version='0.1',
-    url='https://github.com/bwghughes/s3usermanager',
+    url='https://github.com/bwghughes/s3manager',
     license='See License',
     author='Ben Hughes',
     author_email='bwghughes@gmail.com',
     description='Elegant user and bucket manager for S3.',
     long_description=__doc__,
-    py_modules=['s3_usermanager'],
+    py_modules=['s3manager'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',

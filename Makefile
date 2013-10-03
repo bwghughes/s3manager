@@ -2,5 +2,5 @@ clean:
 	rm -r *.pyc
 
 test:
-	python test_s3_usermanager.py
+	python test_s3manager.py
 

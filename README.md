@@ -14,11 +14,11 @@ To create a user with access to a single bucket try the following:
 
 ```
 import uuid
-from s3_usermanager import create_user_and_bucket
+from s3_manager import create_user_and_bucket
 
 def main():
-    bucket_name = uuid.uuid4()
-    aws_access_id, aws_access_secret = create_user_and_bucket(bucket_name)
+    user_name = uuid.uuid4()
+    aws_access_id, aws_access_secret = create_user_and_bucket(user_name)
 
 if __name__ == '__main__':
     main()
