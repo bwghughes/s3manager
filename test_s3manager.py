@@ -1,5 +1,7 @@
 import unittest
 from mock import patch, Mock
+from nose.plugins.attrib import attr
+
 import boto
 from s3manager import get_iam_connection, add_user_to_group, USER_GROUP,\
                       create_user
@@ -56,14 +58,16 @@ class UnitTestS3Manager(unittest.TestCase):
                                                           username=mock_username)
         self.assertRaises(BotoServerError)
 
-
+@attr('integration')
 class FunctionalTestS3Manager(unittest.TestCase):
     def setUp(self):
         pass
 
     def test_get_iam_connection(self):
         conn = get_iam_connection()
-        assert conn
+        groups = conn.get_all_groups()
+        #assert
+
 
 
 if __name__ == '__main__':
@@ -71,5 +75,4 @@ if __name__ == '__main__':
     import sys
     loader = unittest.TestLoader()
     suite = loader.discover(os.curdir)
-    print suite._tests
     unittest.TextTestRunner(sys.stdout, verbosity=1).run(suite)
